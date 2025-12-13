@@ -5,31 +5,29 @@
   </div>
 
   <div class="dashboard-nav">
-    <a routerLink="master-data" routerLinkActive="active" class="nav-item">
-      <h3>Data Management</h3>
+    <a routerLink="/admin/master-data" class="nav-item">
+      <h3>Master Data Management</h3>
       <p>Manage Hubs, Terminals, Drivers, and Vehicles</p>
     </a>
     
-    <a routerLink="orders" routerLinkActive="active" class="nav-item">
+    <a routerLink="/admin/orders" class="nav-item">
       <h3>Order Management</h3>
       <p>Create and manage delivery orders</p>
     </a>
     
-    <a routerLink="vehicle-allocation" routerLinkActive="active" class="nav-item">
+    <a routerLink="/admin/vehicle-allocation" class="nav-item">
       <h3>Vehicle Allocation</h3>
       <p>Allocate vehicles to drivers</p>
     </a>
     
-    <a routerLink="fleet-map" routerLinkActive="active" class="nav-item">
+    <a routerLink="/admin/fleet-map" class="nav-item">
       <h3>Live Fleet Map</h3>
       <p>Real-time vehicle tracking</p>
     </a>
     
-    <a routerLink="inventory" routerLinkActive="active" class="nav-item">
+    <a routerLink="/admin/inventory" class="nav-item">
       <h3>Inventory Dashboard</h3>
       <p>Monitor fuel inventory levels</p>
     </a>
   </div>
-
-  <router-outlet></router-outlet>
 </div>
