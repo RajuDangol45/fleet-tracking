@@ -1,0 +1,56 @@
+<div class="drivers-list">
+  <div class="header">
+    <h2>Drivers Management</h2>
+    <a routerLink="create" class="btn btn-primary">Add New Driver</a>
+  </div>
+
+  <div class="filters">
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search by name, license, or phone..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange()"
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading drivers...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+    <button (click)="loadDrivers()" class="btn btn-secondary">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="drivers-grid">
+    <div *ngFor="let driver of filteredDrivers" class="driver-card">
+      <div class="driver-header">
+        <h3>{{ driver.name }}</h3>
+      </div>
+
+      <div class="driver-details">
+        <div class="detail-item">
+          <span class="label">License:</span>
+          <span class="value">{{ driver.license }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Phone:</span>
+          <span class="value">{{ driver.phone }}</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a [routerLink]="['edit', driver.id]" class="btn btn-secondary">Edit</a>
+        <button (click)="deleteDriver(driver.id)" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error && filteredDrivers.length === 0" class="no-results">
+    <p>No drivers found matching your criteria.</p>
+  </div>
+</div>
