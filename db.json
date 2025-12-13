@@ -1,0 +1,260 @@
+{
+  "hubs": [
+    {
+      "id": "hub-1",
+      "name": "Downtown Distribution Hub",
+      "type": "hub",
+      "address": "123 Main St, City",
+      "coordinates": { "lat": 40.7128, "lng": -74.0060 },
+      "inventory": {
+        "diesel": 15000,
+        "petrol": 12000
+      }
+    },
+    {
+      "id": "hub-2",
+      "name": "North Side Hub",
+      "type": "hub",
+      "address": "456 North Ave, City",
+      "coordinates": { "lat": 40.7829, "lng": -73.9654 },
+      "inventory": {
+        "diesel": 8000,
+        "petrol": 18000
+      }
+    },
+    {
+      "id": "terminal-1",
+      "name": "East Terminal",
+      "type": "terminal",
+      "address": "789 East St, City",
+      "coordinates": { "lat": 40.6782, "lng": -73.9442 },
+      "inventory": {
+        "diesel": 5000,
+        "petrol": 3000
+      }
+    },
+    {
+      "id": "terminal-2",
+      "name": "West Terminal",
+      "type": "terminal",
+      "address": "321 West Blvd, City",
+      "coordinates": { "lat": 40.7282, "lng": -73.7949 },
+      "inventory": {
+        "diesel": 2000,
+        "petrol": 7000
+      }
+    },
+    {
+      "id": "terminal-3",
+      "name": "South Terminal",
+      "type": "terminal",
+      "address": "654 South Dr, City",
+      "coordinates": { "lat": 40.5795, "lng": -74.1502 },
+      "inventory": {
+        "diesel": 1500,
+        "petrol": 2500
+      }
+    },
+    {
+      "id": "terminal-4",
+      "name": "Central Terminal",
+      "type": "terminal",
+      "address": "987 Central Ave, City",
+      "coordinates": { "lat": 40.7500, "lng": -73.9800 },
+      "inventory": {
+        "diesel": 3500,
+        "petrol": 4500
+      }
+    },
+    {
+      "id": "terminal-5",
+      "name": "Riverside Terminal",
+      "type": "terminal",
+      "address": "555 River Rd, City",
+      "coordinates": { "lat": 40.6900, "lng": -74.0200 },
+      "inventory": {
+        "diesel": 2800,
+        "petrol": 3200
+      }
+    }
+  ],
+  "drivers": [
+    {
+      "id": "driver-1",
+      "name": "John Smith",
+      "license": "DL-123456",
+      "phone": "+1-555-0100"
+    },
+    {
+      "id": "driver-2",
+      "name": "Sarah Johnson",
+      "license": "DL-789012",
+      "phone": "+1-555-0101"
+    },
+    {
+      "id": "driver-3",
+      "name": "Mike Wilson",
+      "license": "DL-345678",
+      "phone": "+1-555-0102"
+    },
+    {
+      "id": "driver-4",
+      "name": "Emily Davis",
+      "license": "DL-901234",
+      "phone": "+1-555-0103"
+    },
+    {
+      "id": "driver-5",
+      "name": "Robert Brown",
+      "license": "DL-567890",
+      "phone": "+1-555-0104"
+    },
+    {
+      "id": "driver-6",
+      "name": "Lisa Garcia",
+      "license": "DL-246810",
+      "phone": "+1-555-0105"
+    },
+    {
+      "id": "driver-7",
+      "name": "David Miller",
+      "license": "DL-135792",
+      "phone": "+1-555-0106"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "vehicle-1",
+      "registration": "TRK-101",
+      "capacity": 8000,
+      "type": "Tanker"
+    },
+    {
+      "id": "vehicle-2",
+      "registration": "TRK-102",
+      "capacity": 10000,
+      "type": "Tanker"
+    },
+    {
+      "id": "vehicle-3",
+      "registration": "TRK-103",
+      "capacity": 6000,
+      "type": "Truck"
+    },
+    {
+      "id": "vehicle-4",
+      "registration": "TRK-104",
+      "capacity": 12000,
+      "type": "Tanker"
+    },
+    {
+      "id": "vehicle-5",
+      "registration": "TRK-105",
+      "capacity": 9000,
+      "type": "Truck"
+    },
+    {
+      "id": "vehicle-6",
+      "registration": "TRK-106",
+      "capacity": 7500,
+      "type": "Tanker"
+    },
+    {
+      "id": "vehicle-7",
+      "registration": "TRK-107",
+      "capacity": 11000,
+      "type": "Tanker"
+    }
+  ],
+  "orders": [
+    {
+      "id": "order-1",
+      "destinationId": "terminal-5",
+      "product": "diesel",
+      "quantity": 5000,
+      "deliveryDate": "2025-12-15",
+      "assignedDriverId": "driver-1",
+      "status": "assigned"
+    },
+    {
+      "id": "order-2",
+      "destinationId": "terminal-2",
+      "product": "petrol",
+      "quantity": 3000,
+      "deliveryDate": "2025-12-16",
+      "assignedDriverId": "driver-2",
+      "status": "assigned"
+    },
+    {
+      "id": "order-3",
+      "destinationId": "terminal-3",
+      "product": "diesel",
+      "quantity": 2000,
+      "deliveryDate": "2025-12-17",
+      "assignedDriverId": null,
+      "status": "pending"
+    },
+    {
+      "id": "order-4",
+      "destinationId": "hub-1",
+      "product": "petrol",
+      "quantity": 4000,
+      "deliveryDate": "2025-12-18",
+      "assignedDriverId": "driver-3",
+      "status": "completed"
+    },
+    {
+      "id": "order-5",
+      "destinationId": "terminal-1",
+      "product": "diesel",
+      "quantity": 6000,
+      "deliveryDate": "2025-12-19",
+      "assignedDriverId": null,
+      "status": "pending"
+    },
+    {
+      "id": "order-6",
+      "destinationId": "terminal-4",
+      "product": "petrol",
+      "quantity": 3500,
+      "deliveryDate": "2025-12-20",
+      "assignedDriverId": "driver-4",
+      "status": "assigned"
+    },
+    {
+      "id": "order-7",
+      "destinationId": "hub-2",
+      "product": "diesel",
+      "quantity": 4500,
+      "deliveryDate": "2025-12-21",
+      "assignedDriverId": null,
+      "status": "pending"
+    }
+  ],
+  "vehicleAllocations": [
+    {
+      "id": "allocation-1",
+      "vehicleId": "vehicle-1",
+      "driverId": "driver-1",
+      "date": "2025-12-15"
+    },
+    {
+      "id": "allocation-2",
+      "vehicleId": "vehicle-2",
+      "driverId": "driver-2",
+      "date": "2025-12-16"
+    },
+    {
+      "id": "allocation-3",
+      "vehicleId": "vehicle-3",
+      "driverId": "driver-3",
+      "date": "2025-12-17"
+    },
+    {
+      "id": "allocation-4",
+      "vehicleId": "vehicle-4",
+      "driverId": "driver-4",
+      "date": "2025-12-20"
+    }
+  ]
+}
