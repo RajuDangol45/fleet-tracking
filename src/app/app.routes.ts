@@ -9,6 +9,7 @@ import { VehiclesListComponent } from './features/admin/master-data/vehicles/veh
 import { VehicleFormComponent } from './features/admin/master-data/vehicles/vehicle-form.component';
 import { OrdersListComponent } from './features/admin/orders/orders-list.component';
 import { OrderFormComponent } from './features/admin/orders/order-form.component';
+import { VehicleAllocationComponent } from './features/admin/vehicle-allocation/vehicle-allocation.component';
 
 export const routes: Routes = [
   {
@@ -86,6 +87,10 @@ export const routes: Routes = [
             component: OrderFormComponent
           }
         ]
+      },
+      {
+        path: 'vehicle-allocation',
+        component: VehicleAllocationComponent
       }
     ]
   }
