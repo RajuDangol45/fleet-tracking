@@ -30,7 +30,12 @@
               }
             ],
             "styles": ["node_modules/leaflet/dist/leaflet.css", "src/styles.scss"],
-            "scripts": ["node_modules/leaflet/dist/leaflet.js"]
+            "scripts": ["node_modules/leaflet/dist/leaflet.js"],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {

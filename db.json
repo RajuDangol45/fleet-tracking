@@ -148,7 +148,7 @@
       "id": "vehicle-1",
       "registration": "TRK-101",
       "capacity": 8000,
-      "type": "Tanker"
+      "type": "Truck"
     },
     {
       "id": "vehicle-2",
