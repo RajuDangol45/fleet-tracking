@@ -1,0 +1,310 @@
+// Text utilities
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: $text-primary; }
+.text-secondary { color: $text-secondary; }
+.text-muted { color: $text-muted; }
+.text-success { color: $success-color; }
+.text-danger { color: $danger-color; }
+.text-warning { color: $warning-color; }
+
+.font-weight-normal { font-weight: $font-weight-normal; }
+.font-weight-medium { font-weight: $font-weight-medium; }
+.font-weight-bold { font-weight: $font-weight-bold; }
+
+.font-size-small { font-size: $font-size-small; }
+.font-size-normal { font-size: $font-size-normal; }
+.font-size-large { font-size: $font-size-large; }
+
+// Spacing utilities
+.m-0 { margin: 0; }
+.m-xs { margin: $spacing-xs; }
+.m-sm { margin: $spacing-sm; }
+.m-md { margin: $spacing-md; }
+.m-lg { margin: $spacing-lg; }
+.m-xl { margin: $spacing-xl; }
+
+.mt-0 { margin-top: 0; }
+.mt-xs { margin-top: $spacing-xs; }
+.mt-sm { margin-top: $spacing-sm; }
+.mt-md { margin-top: $spacing-md; }
+.mt-lg { margin-top: $spacing-lg; }
+.mt-xl { margin-top: $spacing-xl; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-xs { margin-bottom: $spacing-xs; }
+.mb-sm { margin-bottom: $spacing-sm; }
+.mb-md { margin-bottom: $spacing-md; }
+.mb-lg { margin-bottom: $spacing-lg; }
+.mb-xl { margin-bottom: $spacing-xl; }
+
+.ml-0 { margin-left: 0; }
+.ml-xs { margin-left: $spacing-xs; }
+.ml-sm { margin-left: $spacing-sm; }
+.ml-md { margin-left: $spacing-md; }
+.ml-lg { margin-left: $spacing-lg; }
+
+.mr-0 { margin-right: 0; }
+.mr-xs { margin-right: $spacing-xs; }
+.mr-sm { margin-right: $spacing-sm; }
+.mr-md { margin-right: $spacing-md; }
+.mr-lg { margin-right: $spacing-lg; }
+
+.p-0 { padding: 0; }
+.p-xs { padding: $spacing-xs; }
+.p-sm { padding: $spacing-sm; }
+.p-md { padding: $spacing-md; }
+.p-lg { padding: $spacing-lg; }
+.p-xl { padding: $spacing-xl; }
+
+.pt-0 { padding-top: 0; }
+.pt-xs { padding-top: $spacing-xs; }
+.pt-sm { padding-top: $spacing-sm; }
+.pt-md { padding-top: $spacing-md; }
+.pt-lg { padding-top: $spacing-lg; }
+
+.pb-0 { padding-bottom: 0; }
+.pb-xs { padding-bottom: $spacing-xs; }
+.pb-sm { padding-bottom: $spacing-sm; }
+.pb-md { padding-bottom: $spacing-md; }
+.pb-lg { padding-bottom: $spacing-lg; }
+
+.pl-0 { padding-left: 0; }
+.pl-xs { padding-left: $spacing-xs; }
+.pl-sm { padding-left: $spacing-sm; }
+.pl-md { padding-left: $spacing-md; }
+.pl-lg { padding-left: $spacing-lg; }
+
+.pr-0 { padding-right: 0; }
+.pr-xs { padding-right: $spacing-xs; }
+.pr-sm { padding-right: $spacing-sm; }
+.pr-md { padding-right: $spacing-md; }
+.pr-lg { padding-right: $spacing-lg; }
+
+// Display utilities
+.d-none { display: none; }
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+.d-grid { display: grid; }
+
+// Flex utilities
+.flex-row { flex-direction: row; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+
+.align-start { align-items: flex-start; }
+.align-center { align-items: center; }
+.align-end { align-items: flex-end; }
+.align-stretch { align-items: stretch; }
+
+.flex-1 { flex: 1; }
+.flex-auto { flex: auto; }
+.flex-none { flex: none; }
+
+// Width utilities
+.w-25 { width: 25%; }
+.w-50 { width: 50%; }
+.w-75 { width: 75%; }
+.w-100 { width: 100%; }
+.w-auto { width: auto; }
+
+// Height utilities
+.h-25 { height: 25%; }
+.h-50 { height: 50%; }
+.h-75 { height: 75%; }
+.h-100 { height: 100%; }
+.h-auto { height: auto; }
+
+// Border utilities
+.border { border: 1px solid $border-color; }
+.border-0 { border: 0; }
+.border-top { border-top: 1px solid $border-color; }
+.border-bottom { border-bottom: 1px solid $border-color; }
+.border-left { border-left: 1px solid $border-color; }
+.border-right { border-right: 1px solid $border-color; }
+
+.border-radius-sm { border-radius: $border-radius-sm; }
+.border-radius-md { border-radius: $border-radius-md; }
+.border-radius-lg { border-radius: $border-radius-lg; }
+.rounded { border-radius: 50%; }
+
+// Background utilities
+.bg-white { background-color: $bg-white; }
+.bg-light { background-color: $bg-light; }
+.bg-grey { background-color: $bg-grey; }
+.bg-primary { background-color: $primary-color; }
+.bg-secondary { background-color: $secondary-color; }
+.bg-success { background-color: $bg-success; }
+.bg-danger { background-color: $bg-danger; }
+.bg-warning { background-color: $bg-warning; }
+
+// Shadow utilities
+.shadow-sm { box-shadow: $shadow-sm; }
+.shadow-md { box-shadow: $shadow-md; }
+.shadow-lg { box-shadow: $shadow-lg; }
+.shadow-none { box-shadow: none; }
+
+// Position utilities
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-fixed { position: fixed; }
+.position-sticky { position: sticky; }
+
+// Overflow utilities
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+
+// Cursor utilities
+.cursor-pointer { cursor: pointer; }
+.cursor-default { cursor: default; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+// Visibility utilities
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+
+// Common button classes
+.btn {
+  @include btn-base;
+  
+  &.btn-primary {
+    @include btn-primary;
+  }
+  
+  &.btn-secondary {
+    @include btn-secondary;
+  }
+  
+  &.btn-success {
+    @include btn-success;
+  }
+  
+  &.btn-danger {
+    @include btn-danger;
+  }
+}
+
+// Common status classes
+.status-badge {
+  @include status-badge;
+  
+  &.status-completed,
+  &.status-success {
+    @include status-success;
+  }
+  
+  &.status-failed,
+  &.status-danger {
+    @include status-danger;
+  }
+  
+  &.status-pending,
+  &.status-warning {
+    @include status-warning;
+  }
+}
+
+// Loading spinner class
+.spinner {
+  @include spinner;
+}
+
+// Common card class
+.card {
+  @include card;
+  
+  .card-header {
+    @include card-header;
+  }
+}
+
+// Common form classes
+.form-group {
+  @include form-group;
+}
+
+.form-control {
+  @include form-control;
+}
+
+// Common navigation classes
+.nav-item {
+  @include nav-item;
+}
+
+// Common table classes
+.table {
+  @include table;
+  
+  thead {
+    @include table-header;
+  }
+  
+  tbody tr {
+    @include table-row;
+  }
+}
+
+// Filter controls class
+.filter-controls {
+  @include filter-controls;
+}
+
+// Loading state class
+.loading {
+  @include loading-state;
+}
+
+// Error state class
+.error {
+  @include error-state;
+}
+
+// Success message class
+.success {
+  @include success-message;
+}
+
+// Grid classes
+.grid {
+  @include grid;
+}
+
+.grid-auto-fit {
+  @include grid(auto-fit, 300px);
+}
+
+.grid-auto-fill {
+  @include grid(auto-fill, 300px);
+}
+
+// Responsive display utilities
+@include mobile-only {
+  .d-mobile-none { display: none !important; }
+  .d-mobile-block { display: block !important; }
+  .d-mobile-flex { display: flex !important; }
+}
+
+@include tablet-up {
+  .d-tablet-none { display: none !important; }
+  .d-tablet-block { display: block !important; }
+  .d-tablet-flex { display: flex !important; }
+}
+
+@include desktop-up {
+  .d-desktop-none { display: none !important; }
+  .d-desktop-block { display: block !important; }
+  .d-desktop-flex { display: flex !important; }
+}
