@@ -1,123 +1,71 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
 .orders-list {
   .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+    @include card-header;
+    margin-bottom: $spacing-xl;
 
     h2 {
       margin: 0;
-      color: #2c3e50;
+      color: $text-primary;
     }
   }
 
   .filters {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+    @include filter-controls;
 
     .search-box {
       flex: 1;
       min-width: 250px;
 
       .search-input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 1rem;
-
-        &:focus {
-          outline: none;
-          border-color: #3498db;
-          box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-        }
+        @include form-control;
       }
     }
 
     .filter-group {
       .filter-select {
-        padding: 0.75rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 1rem;
-        background: white;
-
-        &:focus {
-          outline: none;
-          border-color: #3498db;
-          box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-        }
+        @include form-control;
+        background: $bg-white;
       }
     }
   }
 
   .loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3rem;
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
-    }
+    @include loading-state;
   }
 
   .error-message {
-    background: #f8d7da;
-    color: #721c24;
-    padding: 1rem;
-    border-radius: 4px;
-    margin-bottom: 2rem;
+    @include error-state;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
   .orders-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 1.5rem;
+    @include grid(auto-fill, 350px, $spacing-lg);
   }
 
   .order-card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    border: 1px solid #eee;
+    @include card;
 
     .order-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid #eee;
+      @include card-header;
 
       h3 {
         margin: 0;
-        color: #2c3e50;
-        font-size: 1.2rem;
+        color: $text-primary;
+        font-size: $font-size-xl;
       }
 
       .order-status {
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
+        @include status-badge;
         text-transform: uppercase;
+        font-weight: $font-weight-bold;
 
         &.pending {
-          background: #fff3cd;
-          color: #856404;
+          @include status-warning;
         }
 
         &.assigned {
@@ -126,103 +74,56 @@
         }
 
         &.in-transit {
-          background: #d4edda;
-          color: #155724;
+          @include status-success;
         }
 
         &.delivered {
-          background: #e8f5e8;
-          color: #2e7d32;
+          @include status-success;
         }
 
         &.cancelled {
-          background: #f8d7da;
-          color: #721c24;
+          @include status-danger;
         }
       }
     }
 
     .order-details {
-      margin-bottom: 1.5rem;
+      margin-bottom: $spacing-lg;
 
       .detail-item {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 0.75rem;
+        margin-bottom: $spacing-sm;
 
         .label {
-          font-weight: 500;
-          color: #555;
+          font-weight: $font-weight-medium;
+          color: $text-secondary;
         }
 
         .value {
-          color: #2c3e50;
+          color: $text-primary;
         }
       }
     }
 
     .actions {
       display: flex;
-      gap: 0.5rem;
+      gap: $spacing-sm;
     }
   }
 
   .no-results {
     text-align: center;
-    padding: 3rem;
-    color: #666;
+    padding: $spacing-xxl;
+    color: $text-secondary;
   }
 }
 
-.btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  transition: all 0.3s ease;
-
-  &.btn-primary {
-    background: #3498db;
-    color: white;
-
-    &:hover {
-      background: #2980b9;
-    }
-  }
-
-  &.btn-secondary {
-    background: #95a5a6;
-    color: white;
-
-    &:hover {
-      background: #7f8c8d;
-    }
-  }
-
-  &.btn-danger {
-    background: #e74c3c;
-    color: white;
-
-    &:hover {
-      background: #c0392b;
-    }
-  }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@media (max-width: 768px) {
+@include mobile-only {
   .orders-list {
     .header {
       flex-direction: column;
-      gap: 1rem;
+      gap: $spacing-md;
       align-items: stretch;
     }
 

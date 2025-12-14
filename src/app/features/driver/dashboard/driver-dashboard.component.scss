@@ -1,56 +1,35 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
 .driver-dashboard {
   .dashboard-header {
-    margin-bottom: 3rem;
+    margin-bottom: $spacing-xxl;
     text-align: center;
 
     h1 {
-      margin: 0 0 0.5rem 0;
-      color: #2c3e50;
+      margin: 0 0 $spacing-sm 0;
+      color: $text-primary;
       font-size: 2.5rem;
     }
 
     p {
       margin: 0;
-      color: #666;
-      font-size: 1.1rem;
+      color: $text-secondary;
+      font-size: $font-size-large;
     }
   }
 
   .dashboard-nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    @include grid(auto-fit, 300px, $spacing-xl);
 
     .nav-item {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-
-      &:hover {
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-        transform: translateY(-2px);
-      }
-
-      h3 {
-        margin: 0 0 0.5rem 0;
-        color: #2c3e50;
-        font-size: 1.3rem;
-      }
-
-      p {
-        margin: 0;
-        color: #666;
-        line-height: 1.5;
-      }
+      @include nav-item;
+      padding: $spacing-xl;
     }
   }
 }
 
-@media (max-width: 768px) {
+@include mobile-only {
   .driver-dashboard {
     .dashboard-header {
       h1 {

@@ -1,81 +1,48 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
 .shift-history {
   .header {
-    margin-bottom: 2rem;
+    margin-bottom: $spacing-xl;
 
     h2 {
       margin: 0;
-      color: #2c3e50;
+      color: $text-primary;
     }
   }
 
   .loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3rem;
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
-    }
+    @include loading-state;
   }
 
   .error {
-    background: #f8d7da;
-    color: #721c24;
-    padding: 1rem;
-    border-radius: 4px;
-    margin-bottom: 2rem;
-    text-align: center;
+    @include error-state;
   }
 
   .content {
     .no-history {
       text-align: center;
-      padding: 3rem;
-      color: #666;
+      padding: $spacing-xxl;
+      color: $text-secondary;
     }
 
     .deliveries-list {
-      display: grid;
-      gap: 1rem;
+      @include grid(auto-fit, 300px, $spacing-md);
 
       .delivery-card {
-        background: white;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        @include card;
 
         .delivery-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 1rem;
-          padding-bottom: 0.75rem;
-          border-bottom: 1px solid #eee;
+          @include card-header;
 
           .order-id {
-            font-weight: 500;
-            color: #2c3e50;
-            font-size: 1.1rem;
+            font-weight: $font-weight-medium;
+            color: $text-primary;
+            font-size: $font-size-large;
           }
 
           .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
-
-            &.status-completed {
-              background: #d4edda;
-              color: #155724;
-            }
+            @include status-success;
           }
         }
 
@@ -83,28 +50,23 @@
           .detail-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
+            margin-bottom: $spacing-sm;
 
             &:last-child {
               margin-bottom: 0;
             }
 
             .label {
-              font-weight: 500;
-              color: #666;
+              font-weight: $font-weight-medium;
+              color: $text-secondary;
             }
 
             .value {
-              color: #2c3e50;
+              color: $text-primary;
             }
           }
         }
       }
     }
   }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
