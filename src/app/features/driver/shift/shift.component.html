@@ -1,0 +1,116 @@
+<div class="shift">
+  <div class="header">
+    <h2>Today's Shift</h2>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading shift data...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading" class="content">
+    <!-- Driver Info -->
+    <div class="driver-info" *ngIf="currentDriver">
+      <h3>Welcome, {{ currentDriver.name }}</h3>
+      <p>License: {{ currentDriver.license }} | Phone: {{ currentDriver.phone }}</p>
+    </div>
+
+    <!-- No Allocation Message -->
+    <div *ngIf="!todayAllocation" class="no-allocation">
+      <div class="message-card">
+        <h3>No Vehicle Allocated</h3>
+        <p>You don't have a vehicle allocation for today. Please contact your supervisor.</p>
+      </div>
+    </div>
+
+    <!-- Shift Details -->
+    <div *ngIf="todayAllocation" class="shift-details">
+      <!-- Vehicle Assignment Card -->
+      <div class="assignment-card">
+        <div class="card-header">
+          <h3>Vehicle Assignment</h3>
+          <div class="shift-status" [class]="shiftStarted ? 'status-active' : 'status-pending'">
+            {{ shiftStarted ? 'Shift Active' : 'Shift Pending' }}
+          </div>
+        </div>
+        
+        <div class="vehicle-info" *ngIf="assignedVehicle">
+          <div class="info-item">
+            <span class="label">Vehicle:</span>
+            <span class="value">{{ assignedVehicle.registration }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Type:</span>
+            <span class="value">{{ assignedVehicle.type }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Capacity:</span>
+            <span class="value">{{ assignedVehicle.capacity }} L</span>
+          </div>
+        </div>
+
+        <div class="action-section">
+          <button 
+            *ngIf="!shiftStarted" 
+            (click)="startShift()" 
+            class="btn btn-primary btn-large"
+            [disabled]="!todayAllocation">
+            Start Shift
+          </button>
+          
+          <div *ngIf="shiftStarted" class="shift-started">
+            <span class="success-message">✓ Shift started successfully!</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deliveries List -->
+      <div class="deliveries-section">
+        <div class="section-header">
+          <h3>Assigned Deliveries</h3>
+          <span class="delivery-count">{{ assignedOrders.length }} deliveries</span>
+        </div>
+
+        <div *ngIf="assignedOrders.length === 0" class="no-deliveries">
+          <p>No deliveries assigned.</p>
+        </div>
+
+        <div class="deliveries-list">
+          <div 
+            *ngFor="let order of assignedOrders" 
+            class="delivery-card">
+            <div class="delivery-header">
+              <div class="order-id">Order #{{ order.id }}</div>
+              <div class="status-badge" [class]="getStatusBadgeClass(order.status)">
+                {{ order.status }}
+              </div>
+            </div>
+            
+            <div class="delivery-details">
+              <div class="detail-item">
+                <span class="label">Destination:</span>
+                <span class="value">{{ getDestinationName(order.destinationId) }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Product:</span>
+                <span class="value">{{ order.product | titlecase }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Quantity:</span>
+                <span class="value">{{ order.quantity }} L</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Delivery Date:</span>
+                <span class="value">{{ order.deliveryDate | date }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
