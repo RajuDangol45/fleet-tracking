@@ -1,0 +1,52 @@
+<div class="shift-history">
+  <div class="header">
+    <h2>Shift History</h2>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading shift history...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading" class="content">
+    <div *ngIf="pastDeliveries.length === 0" class="no-history">
+      <p>No completed deliveries found.</p>
+    </div>
+
+    <div class="deliveries-list">
+      <div 
+        *ngFor="let delivery of pastDeliveries" 
+        class="delivery-card">
+        <div class="delivery-header">
+          <div class="order-id">Order #{{ delivery.id }}</div>
+          <div class="status-badge status-completed">
+            {{ delivery.status }}
+          </div>
+        </div>
+        
+        <div class="delivery-details">
+          <div class="detail-item">
+            <span class="label">Destination:</span>
+            <span class="value">{{ getDestinationName(delivery.destinationId) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Product:</span>
+            <span class="value">{{ delivery.product | titlecase }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Quantity:</span>
+            <span class="value">{{ delivery.quantity }} L</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Delivery Date:</span>
+            <span class="value">{{ delivery.deliveryDate | date }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

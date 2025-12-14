@@ -1,0 +1,23 @@
+<div class="driver-map">
+  <div class="header">
+    <h2>Live Map & GPS</h2>
+    <button class="btn btn-primary">
+      Send GPS Update
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading map data...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div [hidden]="loading" class="content">
+    <div class="map-container">
+      <div id="driver-map" class="map"></div>
+    </div>
+  </div>
+</div>

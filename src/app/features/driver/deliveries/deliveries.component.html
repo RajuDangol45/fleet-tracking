@@ -1,0 +1,106 @@
+<div class="deliveries">
+  <div class="header">
+    <h2>Delivery Management</h2>
+    <button (click)="endShift()" class="btn btn-secondary">
+      End Shift
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading deliveries...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+
+  <div *ngIf="successMessage" class="success">
+    {{ successMessage }}
+  </div>
+
+  <div *ngIf="!loading" class="content">
+    <div *ngIf="assignedOrders.length === 0" class="no-deliveries">
+      <p>No deliveries assigned.</p>
+    </div>
+
+    <div class="deliveries-list">
+      <div 
+        *ngFor="let order of assignedOrders" 
+        class="delivery-card">
+        <div class="delivery-header">
+          <div class="order-id">Order #{{ order.id }}</div>
+          <div class="status-badge" [class]="getStatusBadgeClass(order.status)">
+            {{ order.status }}
+          </div>
+        </div>
+        
+        <div class="delivery-details">
+          <div class="detail-item">
+            <span class="label">Destination:</span>
+            <span class="value">{{ getDestinationName(order.destinationId) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Product:</span>
+            <span class="value">{{ order.product | titlecase }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Quantity:</span>
+            <span class="value">{{ order.quantity }} L</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Delivery Date:</span>
+            <span class="value">{{ order.deliveryDate | date }}</span>
+          </div>
+        </div>
+
+        <div class="delivery-actions">
+          <button 
+            *ngIf="canMarkCompleted(order)"
+            (click)="markAsCompleted(order)" 
+            class="btn btn-success">
+            Mark as Completed
+          </button>
+          
+          <button 
+            *ngIf="canMarkFailed(order)"
+            (click)="markAsFailed(order)" 
+            class="btn btn-danger">
+            Mark as Failed
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Failure Reason Modal -->
+  <div *ngIf="showFailureModal" class="modal-backdrop" (click)="closeFailureModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Mark Delivery as Failed</h3>
+        <button (click)="closeFailureModal()" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Order #{{ selectedOrder?.id }}</p>
+        <label for="failureReason">Reason for failure:</label>
+        <textarea 
+          id="failureReason"
+          [(ngModel)]="failureReason"
+          rows="4"
+          class="form-control"
+          placeholder="Please provide a reason for the delivery failure..."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button (click)="closeFailureModal()" class="btn btn-secondary">
+          Cancel
+        </button>
+        <button 
+          (click)="confirmFailure()" 
+          class="btn btn-danger"
+          [disabled]="!failureReason.trim()">
+          Confirm Failure
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

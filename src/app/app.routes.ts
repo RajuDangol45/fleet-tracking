@@ -11,6 +11,11 @@ import { OrdersListComponent } from './features/admin/orders/orders-list.compone
 import { OrderFormComponent } from './features/admin/orders/order-form.component';
 import { VehicleAllocationComponent } from './features/admin/vehicle-allocation/vehicle-allocation.component';
 import { FleetMapComponent } from './features/admin/fleet-map/fleet-map.component';
+import { DriverDashboardComponent } from './features/driver/dashboard/driver-dashboard.component';
+import { ShiftComponent } from './features/driver/shift/shift.component';
+import { DriverMapComponent } from './features/driver/map/driver-map.component';
+import { DeliveriesComponent } from './features/driver/deliveries/deliveries.component';
+import { ShiftHistoryComponent } from './features/driver/shift-history/shift-history.component';
 
 export const routes: Routes = [
   {
@@ -96,6 +101,31 @@ export const routes: Routes = [
       {
         path: 'fleet-map',
         component: FleetMapComponent
+      }
+    ]
+  },
+  {
+    path: 'driver',
+    children: [
+      {
+        path: '',
+        component: DriverDashboardComponent
+      },
+      {
+        path: 'shift',
+        component: ShiftComponent
+      },
+      {
+        path: 'map',
+        component: DriverMapComponent
+      },
+      {
+        path: 'deliveries',
+        component: DeliveriesComponent
+      },
+      {
+        path: 'shift-history',
+        component: ShiftHistoryComponent
       }
     ]
   }

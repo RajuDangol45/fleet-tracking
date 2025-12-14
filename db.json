@@ -80,7 +80,7 @@
         "lng": -74.02
       },
       "inventory": {
-        "diesel": 2800,
+        "diesel": 22800,
         "petrol": 3200
       }
     },
@@ -195,7 +195,7 @@
       "quantity": 5000,
       "deliveryDate": "2025-12-15",
       "assignedDriverId": "driver-1",
-      "status": "assigned"
+      "status": "completed"
     },
     {
       "id": "order-2",
@@ -250,6 +250,15 @@
       "deliveryDate": "2025-12-21",
       "assignedDriverId": null,
       "status": "pending"
+    },
+    {
+      "id": "75c5",
+      "destinationId": "hub-2",
+      "product": "diesel",
+      "quantity": 2345,
+      "deliveryDate": "2025-12-16",
+      "assignedDriverId": "driver-1",
+      "status": "assigned"
     }
   ],
   "vehicleAllocations": [
@@ -276,6 +285,30 @@
       "vehicleId": "vehicle-4",
       "driverId": "driver-4",
       "date": "2025-12-20"
+    },
+    {
+      "id": "cd49",
+      "vehicleId": "vehicle-1",
+      "driverId": "driver-1",
+      "date": "2025-12-14"
+    },
+    {
+      "id": "060f",
+      "vehicleId": "vehicle-2",
+      "driverId": "driver-1",
+      "date": "2025-12-14"
+    },
+    {
+      "id": "71cb",
+      "vehicleId": "vehicle-3",
+      "driverId": "driver-1",
+      "date": "2025-12-14"
+    },
+    {
+      "id": "929e",
+      "vehicleId": "vehicle-4",
+      "driverId": "driver-1",
+      "date": "2025-12-14"
     }
   ]
 }
