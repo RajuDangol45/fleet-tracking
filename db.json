@@ -80,7 +80,7 @@
         "lng": -74.02
       },
       "inventory": {
-        "diesel": 2800,
+        "diesel": 22800,
         "petrol": 3200
       }
     },
@@ -195,7 +195,7 @@
       "quantity": 5000,
       "deliveryDate": "2025-12-15",
       "assignedDriverId": "driver-1",
-      "status": "assigned"
+      "status": "completed"
     },
     {
       "id": "order-2",

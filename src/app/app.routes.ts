@@ -14,6 +14,7 @@ import { FleetMapComponent } from './features/admin/fleet-map/fleet-map.componen
 import { DriverDashboardComponent } from './features/driver/dashboard/driver-dashboard.component';
 import { ShiftComponent } from './features/driver/shift/shift.component';
 import { DriverMapComponent } from './features/driver/map/driver-map.component';
+import { DeliveriesComponent } from './features/driver/deliveries/deliveries.component';
 
 export const routes: Routes = [
   {
@@ -116,6 +117,10 @@ export const routes: Routes = [
       {
         path: 'map',
         component: DriverMapComponent
+      },
+      {
+        path: 'deliveries',
+        component: DeliveriesComponent
       }
     ]
   }
