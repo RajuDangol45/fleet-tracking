@@ -10,6 +10,7 @@ import { VehicleFormComponent } from './features/admin/master-data/vehicles/vehi
 import { OrdersListComponent } from './features/admin/orders/orders-list.component';
 import { OrderFormComponent } from './features/admin/orders/order-form.component';
 import { VehicleAllocationComponent } from './features/admin/vehicle-allocation/vehicle-allocation.component';
+import { FleetMapComponent } from './features/admin/fleet-map/fleet-map.component';
 
 export const routes: Routes = [
   {
@@ -91,6 +92,10 @@ export const routes: Routes = [
       {
         path: 'vehicle-allocation',
         component: VehicleAllocationComponent
+      },
+      {
+        path: 'fleet-map',
+        component: FleetMapComponent
       }
     ]
   }
