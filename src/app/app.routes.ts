@@ -7,6 +7,8 @@ import { DriversListComponent } from './features/admin/master-data/drivers/drive
 import { DriverFormComponent } from './features/admin/master-data/drivers/driver-form.component';
 import { VehiclesListComponent } from './features/admin/master-data/vehicles/vehicles-list.component';
 import { VehicleFormComponent } from './features/admin/master-data/vehicles/vehicle-form.component';
+import { OrdersListComponent } from './features/admin/orders/orders-list.component';
+import { OrderFormComponent } from './features/admin/orders/order-form.component';
 
 export const routes: Routes = [
   {
@@ -65,6 +67,23 @@ export const routes: Routes = [
           {
             path: 'vehicles/edit/:id',
             component: VehicleFormComponent
+          }
+        ]
+      },
+      {
+        path: 'orders',
+        children: [
+          {
+            path: '',
+            component: OrdersListComponent
+          },
+          {
+            path: 'create',
+            component: OrderFormComponent
+          },
+          {
+            path: 'edit/:id',
+            component: OrderFormComponent
           }
         ]
       }

@@ -1,0 +1,127 @@
+<div class="order-form">
+  <div class="form-header">
+    <h2>{{ isEditMode ? 'Edit Order' : 'Create New Order' }}</h2>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>{{ isEditMode ? 'Loading order...' : 'Processing...' }}</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading" class="form">
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="destinationId">Destination *</label>
+        <select
+          id="destinationId"
+          formControlName="destinationId"
+          [class.error]="isFieldInvalid('destinationId')"
+        >
+          <option value="">Select destination</option>
+          <option *ngFor="let hub of hubs" [value]="hub.id">
+            {{ hub.name }} ({{ hub.type | titlecase }})
+          </option>
+        </select>
+        <div *ngIf="getFieldError('destinationId')" class="field-error">
+          {{ getFieldError('destinationId') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="product">Product *</label>
+        <select
+          id="product"
+          formControlName="product"
+          [class.error]="isFieldInvalid('product')"
+        >
+          <option value="">Select product</option>
+          <option value="diesel">Diesel</option>
+          <option value="petrol">Petrol</option>
+        </select>
+        <div *ngIf="getFieldError('product')" class="field-error">
+          {{ getFieldError('product') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="quantity">Quantity (L) *</label>
+        <input
+          type="number"
+          id="quantity"
+          formControlName="quantity"
+          placeholder="Enter quantity in liters"
+          min="1"
+          [class.error]="isFieldInvalid('quantity')"
+        />
+        <div *ngIf="getFieldError('quantity')" class="field-error">
+          {{ getFieldError('quantity') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="deliveryDate">Delivery Date *</label>
+        <input
+          type="date"
+          id="deliveryDate"
+          formControlName="deliveryDate"
+          [class.error]="isFieldInvalid('deliveryDate')"
+        />
+        <div *ngIf="getFieldError('deliveryDate')" class="field-error">
+          {{ getFieldError('deliveryDate') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="assignedDriverId">Assigned Driver</label>
+        <select
+          id="assignedDriverId"
+          formControlName="assignedDriverId"
+          [class.error]="isFieldInvalid('assignedDriverId')"
+        >
+          <option value="">No driver assigned</option>
+          <option *ngFor="let driver of drivers" [value]="driver.id">
+            {{ driver.name }}
+          </option>
+        </select>
+        <div *ngIf="getFieldError('assignedDriverId')" class="field-error">
+          {{ getFieldError('assignedDriverId') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="status">Status *</label>
+        <select
+          id="status"
+          formControlName="status"
+          [class.error]="isFieldInvalid('status')"
+        >
+          <option value="pending">Pending</option>
+          <option value="assigned">Assigned</option>
+          <option value="in-transit">In Transit</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <div *ngIf="getFieldError('status')" class="field-error">
+          {{ getFieldError('status') }}
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" (click)="onCancel()" class="btn btn-secondary">
+          Cancel
+        </button>
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="loading || orderForm.invalid"
+        >
+          {{ isEditMode ? 'Update Order' : 'Create Order' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
