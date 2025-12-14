@@ -15,6 +15,7 @@ import { DriverDashboardComponent } from './features/driver/dashboard/driver-das
 import { ShiftComponent } from './features/driver/shift/shift.component';
 import { DriverMapComponent } from './features/driver/map/driver-map.component';
 import { DeliveriesComponent } from './features/driver/deliveries/deliveries.component';
+import { ShiftHistoryComponent } from './features/driver/shift-history/shift-history.component';
 
 export const routes: Routes = [
   {
@@ -121,6 +122,10 @@ export const routes: Routes = [
       {
         path: 'deliveries',
         component: DeliveriesComponent
+      },
+      {
+        path: 'shift-history',
+        component: ShiftHistoryComponent
       }
     ]
   }
