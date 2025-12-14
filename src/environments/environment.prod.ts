@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://fleet-tracking-be.onrender.com/api'
+  apiUrl: 'https://fleet-tracking-be.onrender.com'
 };
