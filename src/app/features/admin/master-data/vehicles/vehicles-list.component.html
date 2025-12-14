@@ -1,0 +1,67 @@
+<div class="vehicles-list">
+  <div class="header">
+    <h2>Vehicles Management</h2>
+    <a routerLink="create" class="btn btn-primary">Add New Vehicle</a>
+  </div>
+
+  <div class="filters">
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search by registration or type..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange()"
+        class="search-input"
+      />
+    </div>
+    
+    <div class="filter-group">
+      <select [(ngModel)]="filterType" (change)="onTypeFilterChange()" class="filter-select">
+        <option value="">All Types</option>
+        <option value="Tanker">Tanker</option>
+        <option value="Truck">Truck</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading vehicles...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+    <button (click)="loadVehicles()" class="btn btn-secondary">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="vehicles-grid">
+    <div *ngFor="let vehicle of filteredVehicles" class="vehicle-card">
+      <div class="vehicle-header">
+        <h3>{{ vehicle.registration }}</h3>
+        <span class="vehicle-type" [class.tanker]="vehicle.type === 'Tanker'" [class.truck]="vehicle.type === 'Truck'">
+          {{ vehicle.type }}
+        </span>
+      </div>
+
+      <div class="vehicle-details">
+        <div class="detail-item">
+          <span class="label">Capacity:</span>
+          <span class="value">{{ vehicle.capacity | number }} L</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Type:</span>
+          <span class="value">{{ vehicle.type }}</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a [routerLink]="['edit', vehicle.id]" class="btn btn-secondary">Edit</a>
+        <button (click)="deleteVehicle(vehicle.id)" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error && filteredVehicles.length === 0" class="no-results">
+    <p>No vehicles found matching your criteria.</p>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="orders-list">
+  <div class="header">
+    <h2>Order Management</h2>
+    <a routerLink="create" class="btn btn-primary">Create New Order</a>
+  </div>
+
+  <div class="filters">
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search by order ID, product, or destination..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange()"
+        class="search-input"
+      />
+    </div>
+    
+    <div class="filter-group">
+      <select [(ngModel)]="filterStatus" (change)="onStatusFilterChange()" class="filter-select">
+        <option value="">All Statuses</option>
+        <option value="pending">Pending</option>
+        <option value="assigned">Assigned</option>
+        <option value="in-transit">In Transit</option>
+        <option value="delivered">Delivered</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <select [(ngModel)]="filterProduct" (change)="onProductFilterChange()" class="filter-select">
+        <option value="">All Products</option>
+        <option value="diesel">Diesel</option>
+        <option value="petrol">Petrol</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading orders...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+    <button (click)="loadOrders()" class="btn btn-secondary">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="orders-grid">
+    <div *ngFor="let order of filteredOrders" class="order-card">
+      <div class="order-header">
+        <h3>{{ order.id }}</h3>
+        <span class="order-status" [class]="getStatusColor(order.status)">
+          {{ order.status | titlecase }}
+        </span>
+      </div>
+
+      <div class="order-details">
+        <div class="detail-item">
+          <span class="label">Destination:</span>
+          <span class="value">{{ getDestinationName(order.destinationId) }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Product:</span>
+          <span class="value">{{ order.product | titlecase }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Quantity:</span>
+          <span class="value">{{ order.quantity | number }} L</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Delivery Date:</span>
+          <span class="value">{{ order.deliveryDate | date }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Assigned Driver:</span>
+          <span class="value">{{ getDriverName(order.assignedDriverId) }}</span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a [routerLink]="['edit', order.id]" class="btn btn-secondary">Edit</a>
+        <button (click)="deleteOrder(order.id)" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error && filteredOrders.length === 0" class="no-results">
+    <p>No orders found matching your criteria.</p>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="vehicle-form">
+  <div class="form-header">
+    <h2>{{ isEditMode ? 'Edit Vehicle' : 'Add New Vehicle' }}</h2>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>{{ isEditMode ? 'Loading vehicle...' : 'Processing...' }}</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading" class="form">
+    <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="registration">Registration Number *</label>
+        <input
+          type="text"
+          id="registration"
+          formControlName="registration"
+          placeholder="Enter registration number"
+          [class.error]="isFieldInvalid('registration')"
+        />
+        <div *ngIf="getFieldError('registration')" class="field-error">
+          {{ getFieldError('registration') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Vehicle Type *</label>
+        <select
+          id="type"
+          formControlName="type"
+          [class.error]="isFieldInvalid('type')"
+        >
+          <option value="">Select vehicle type</option>
+          <option value="Tanker">Tanker</option>
+          <option value="Truck">Truck</option>
+        </select>
+        <div *ngIf="getFieldError('type')" class="field-error">
+          {{ getFieldError('type') }}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="capacity">Capacity (L) *</label>
+        <input
+          type="number"
+          id="capacity"
+          formControlName="capacity"
+          placeholder="Enter capacity in liters"
+          min="1"
+          [class.error]="isFieldInvalid('capacity')"
+        />
+        <div *ngIf="getFieldError('capacity')" class="field-error">
+          {{ getFieldError('capacity') }}
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" (click)="onCancel()" class="btn btn-secondary">
+          Cancel
+        </button>
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="loading || vehicleForm.invalid"
+        >
+          {{ isEditMode ? 'Update Vehicle' : 'Create Vehicle' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

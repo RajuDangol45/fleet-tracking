@@ -1,22 +1,14 @@
 {
   "hubs": [
     {
-      "id": "hub-1",
-      "name": "Downtown Distribution Hub",
-      "type": "hub",
-      "address": "123 Main St, City",
-      "coordinates": { "lat": 40.7128, "lng": -74.0060 },
-      "inventory": {
-        "diesel": 15000,
-        "petrol": 12000
-      }
-    },
-    {
       "id": "hub-2",
       "name": "North Side Hub",
       "type": "hub",
-      "address": "456 North Ave, City",
-      "coordinates": { "lat": 40.7829, "lng": -73.9654 },
+      "address": "456 North Ave, City test",
+      "coordinates": {
+        "lat": 40.7829,
+        "lng": -73.9654
+      },
       "inventory": {
         "diesel": 8000,
         "petrol": 18000
@@ -27,7 +19,10 @@
       "name": "East Terminal",
       "type": "terminal",
       "address": "789 East St, City",
-      "coordinates": { "lat": 40.6782, "lng": -73.9442 },
+      "coordinates": {
+        "lat": 40.6782,
+        "lng": -73.9442
+      },
       "inventory": {
         "diesel": 5000,
         "petrol": 3000
@@ -38,7 +33,10 @@
       "name": "West Terminal",
       "type": "terminal",
       "address": "321 West Blvd, City",
-      "coordinates": { "lat": 40.7282, "lng": -73.7949 },
+      "coordinates": {
+        "lat": 40.7282,
+        "lng": -73.7949
+      },
       "inventory": {
         "diesel": 2000,
         "petrol": 7000
@@ -49,7 +47,10 @@
       "name": "South Terminal",
       "type": "terminal",
       "address": "654 South Dr, City",
-      "coordinates": { "lat": 40.5795, "lng": -74.1502 },
+      "coordinates": {
+        "lat": 40.5795,
+        "lng": -74.1502
+      },
       "inventory": {
         "diesel": 1500,
         "petrol": 2500
@@ -60,7 +61,10 @@
       "name": "Central Terminal",
       "type": "terminal",
       "address": "987 Central Ave, City",
-      "coordinates": { "lat": 40.7500, "lng": -73.9800 },
+      "coordinates": {
+        "lat": 40.75,
+        "lng": -73.98
+      },
       "inventory": {
         "diesel": 3500,
         "petrol": 4500
@@ -71,10 +75,27 @@
       "name": "Riverside Terminal",
       "type": "terminal",
       "address": "555 River Rd, City",
-      "coordinates": { "lat": 40.6900, "lng": -74.0200 },
+      "coordinates": {
+        "lat": 40.69,
+        "lng": -74.02
+      },
       "inventory": {
         "diesel": 2800,
         "petrol": 3200
+      }
+    },
+    {
+      "id": "8fd8",
+      "name": "test",
+      "type": "hub",
+      "address": "test address",
+      "coordinates": {
+        "lat": 1,
+        "lng": 1
+      },
+      "inventory": {
+        "diesel": 15000,
+        "petrol": 12000
       }
     }
   ],

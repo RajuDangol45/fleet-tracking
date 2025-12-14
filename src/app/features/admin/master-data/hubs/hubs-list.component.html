@@ -1,0 +1,77 @@
+<div class="hubs-list">
+  <div class="header">
+    <h2>Hubs & Terminals Management</h2>
+    <a routerLink="create" class="btn btn-primary">Add New Hub/Terminal</a>
+  </div>
+
+  <div class="filters">
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search by name or address..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange()"
+        class="search-input"
+      />
+    </div>
+    
+    <div class="filter-group">
+      <select [(ngModel)]="filterType" (change)="onTypeFilterChange()" class="filter-select">
+        <option value="">All Types</option>
+        <option value="hub">Hubs</option>
+        <option value="terminal">Terminals</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading hubs...</p>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+    <button (click)="loadHubs()" class="btn btn-secondary">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="hubs-grid">
+    <div *ngFor="let hub of filteredHubs" class="hub-card">
+      <div class="hub-header">
+        <h3>{{ hub.name }}</h3>
+        <span class="hub-type" [class.hub]="hub.type === 'hub'" [class.terminal]="hub.type === 'terminal'">
+          {{ hub.type | titlecase }}
+        </span>
+      </div>
+
+      <div class="hub-details">
+        <p class="address">{{ hub.address }}</p>
+        <div class="coordinates">
+          <small>Lat: {{ hub.coordinates.lat }}, Lng: {{ hub.coordinates.lng }}</small>
+        </div>
+      </div>
+
+      <div class="inventory">
+        <h4>Inventory</h4>
+        <div class="inventory-items">
+          <div class="inventory-item" [class.low-stock]="hub.inventory.diesel < threshold">
+            <span class="product">Diesel:</span>
+            <span class="quantity">{{ hub.inventory.diesel | number }} L</span>
+          </div>
+          <div class="inventory-item" [class.low-stock]="hub.inventory.petrol < threshold">
+            <span class="product">Petrol:</span>
+            <span class="quantity">{{ hub.inventory.petrol | number }} L</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a [routerLink]="['edit', hub.id]" class="btn btn-secondary">Edit</a>
+        <button (click)="deleteHub(hub.id)" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !error && filteredHubs.length === 0" class="no-results">
+    <p>No hubs found matching your criteria.</p>
+  </div>
+</div>

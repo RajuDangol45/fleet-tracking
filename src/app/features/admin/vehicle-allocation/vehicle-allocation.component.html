@@ -1,0 +1,146 @@
+<div class="vehicle-allocation">
+  <div class="header">
+    <h2>Vehicle Allocation</h2>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading allocation data...</p>
+  </div>
+
+  <div *ngIf="!loading" class="content">
+    <!-- Create Allocation Form -->
+    <div class="allocation-form">
+      <h3>Create New Allocation</h3>
+      
+      <div *ngIf="error" class="form-error">
+        {{ error }}
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input
+            type="date"
+            id="date"
+            [(ngModel)]="selectedDate"
+            [min]="getTodayMinDate()"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group">
+          <label for="vehicle">Vehicle:</label>
+          <select id="vehicle" [(ngModel)]="selectedVehicle" class="form-control">
+            <option value="">Select Vehicle</option>
+            <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+              {{ vehicle.registration }} ({{ vehicle.type }})
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="driver">Driver:</label>
+          <select id="driver" [(ngModel)]="selectedDriver" class="form-control">
+            <option value="">Select Driver</option>
+            <option *ngFor="let driver of drivers" [value]="driver.id">
+              {{ driver.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group create-btn">
+          <button (click)="createAllocation()" class="btn btn-primary">
+            Create Allocation
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-section">
+      <h3>Filter Allocations</h3>
+      <div class="filters-row">
+        <div class="filter-group">
+          <label for="filterDate">Date:</label>
+          <input
+            type="date"
+            id="filterDate"
+            [(ngModel)]="filterDate"
+            (ngModelChange)="onFilterChange()"
+            class="filter-control"
+          />
+        </div>
+        <div class="filter-group">
+          <label for="filterVehicle">Vehicle:</label>
+          <select 
+            id="filterVehicle" 
+            [(ngModel)]="filterVehicle"
+            (ngModelChange)="onFilterChange()"
+            class="filter-control">
+            <option value="">All Vehicles</option>
+            <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+              {{ vehicle.registration }}
+            </option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filterDriver">Driver:</label>
+          <select 
+            id="filterDriver" 
+            [(ngModel)]="filterDriver"
+            (ngModelChange)="onFilterChange()"
+            class="filter-control">
+            <option value="">All Drivers</option>
+            <option *ngFor="let driver of drivers" [value]="driver.id">
+              {{ driver.name }}
+            </option>
+          </select>
+        </div>
+        <div class="filter-group clear-btn">
+          <button (click)="clearFilters()" class="btn btn-secondary">
+            Clear Filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Allocations List -->
+    <div class="allocations-section">
+      <div class="section-header">
+        <h3>Vehicle Allocations</h3>
+      </div>
+      
+      <div class="allocations-grid">
+        <div *ngFor="let allocation of filteredAllocations" 
+             class="allocation-card">
+          <div class="allocation-header">
+            <div class="date-info">
+              <span class="date">{{ allocation.date | date }}</span>
+            </div>
+            <button (click)="deleteAllocation(allocation.id)" 
+                    class="btn btn-danger btn-sm"
+                    title="Delete allocation">
+              Delete
+            </button>
+          </div>
+          
+          <div class="allocation-details">
+            <div class="detail-item">
+              <span class="label">Vehicle:</span>
+              <span class="value">{{ getVehicleName(allocation.vehicleId) }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="label">Driver:</span>
+              <span class="value">{{ getDriverName(allocation.driverId) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="filteredAllocations.length === 0" class="no-results">
+        <p>No vehicle allocations found.</p>
+        <p *ngIf="filterDate || filterVehicle || filterDriver">
+          Try adjusting your filters or <button (click)="clearFilters()" class="link-button">clear all filters</button>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
