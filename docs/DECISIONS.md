@@ -1,7 +1,7 @@
 # Technical Decisions
 
 ## Framework Choice
-**Angular 17+** - Chosen for its comprehensive ecosystem, TypeScript support, and enterprise-grade architecture.
+**Angular 21+** - Chosen for its comprehensive ecosystem, TypeScript support, and enterprise-grade architecture.
 
 ## Key Libraries
 - **Leaflet.js** - Lightweight mapping solution, easier setup than Mapbox
