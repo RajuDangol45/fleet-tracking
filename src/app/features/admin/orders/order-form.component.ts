@@ -2,9 +2,9 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { forkJoin } from 'rxjs';
 import { Order, Hub, Driver } from '../../../models';
 import { ApiService } from '../../../services/api.service';
+import { StoreService } from '../../../services/store.service';
 
 @Component({
   selector: 'app-order-form',
@@ -25,6 +25,7 @@ export class OrderFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
+    private storeService: StoreService,
     private router: Router,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
@@ -54,38 +55,34 @@ export class OrderFormComponent implements OnInit {
     this.loading = true;
     this.error = '';
 
-    const requests = {
-      hubs: this.apiService.getHubs(),
-      drivers: this.apiService.getDrivers(),
-      ...(this.isEditMode && this.orderId && { order: this.apiService.getOrder(this.orderId) })
-    };
+    this.hubs = this.storeService.getHubs();
+    this.drivers = this.storeService.getDrivers();
 
-    forkJoin(requests).subscribe({
-      next: (data: any) => {
-        this.hubs = data.hubs;
-        this.drivers = data.drivers;
-        
-        if (data.order) {
+    if (this.isEditMode && this.orderId) {
+      this.apiService.getOrder(this.orderId).subscribe({
+        next: (order) => {
           this.orderForm.patchValue({
-            destinationId: data.order.destinationId,
-            product: data.order.product,
-            quantity: data.order.quantity,
-            deliveryDate: data.order.deliveryDate,
-            assignedDriverId: data.order.assignedDriverId || '',
-            status: data.order.status
+            destinationId: order.destinationId,
+            product: order.product,
+            quantity: order.quantity,
+            deliveryDate: order.deliveryDate,
+            assignedDriverId: order.assignedDriverId || '',
+            status: order.status
           });
+          this.loading = false;
+          this.cdr.detectChanges();
+        },
+        error: (error) => {
+          this.error = 'Failed to load order data';
+          this.loading = false;
+          this.cdr.detectChanges();
+          console.error('Error loading order:', error);
         }
-        
-        this.loading = false;
-        this.cdr.detectChanges();
-      },
-      error: (error) => {
-        this.error = 'Failed to load data';
-        this.loading = false;
-        this.cdr.detectChanges();
-        console.error('Error loading data:', error);
-      }
-    });
+      });
+    } else {
+      this.loading = false;
+      this.cdr.detectChanges();
+    }
   }
 
   onSubmit() {
@@ -107,7 +104,12 @@ export class OrderFormComponent implements OnInit {
         : this.apiService.createOrder(orderData as Omit<Order, 'id'>);
 
       request.subscribe({
-        next: () => {
+        next: (savedOrder) => {
+          if (this.isEditMode) {
+            this.storeService.updateOrder(savedOrder);
+          } else {
+            this.storeService.addOrder(savedOrder);
+          }
           this.router.navigate(['/admin/orders']);
         },
         error: (error) => {

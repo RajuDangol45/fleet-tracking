@@ -15,6 +15,28 @@
     }
   }
 
+  .nav-controls {
+    .sync-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+
+      &:hover:not(:disabled) {
+        background-color: #2980b9;
+      }
+
+      &:disabled {
+        background-color: #95a5a6;
+        cursor: not-allowed;
+      }
+    }
+  }
+
   .nav-links {
     display: flex;
     gap: 2rem;

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Order } from '../../../models';
 import { ApiService } from '../../../services/api.service';
+import { StoreService } from '../../../services/store.service';
 
 @Component({
   selector: 'app-orders-list',
@@ -21,7 +22,11 @@ export class OrdersListComponent implements OnInit {
   loading: boolean = true;
   error: string = '';
 
-  constructor(private apiService: ApiService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private apiService: ApiService, 
+    private storeService: StoreService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.loadOrders();
@@ -31,7 +36,7 @@ export class OrdersListComponent implements OnInit {
     this.loading = true;
     this.error = '';
     
-    this.apiService.getOrders().subscribe({
+    this.storeService.orders$.subscribe({
       next: (orders) => {
         this.orders = orders;
         this.applyFilters();
@@ -94,7 +99,7 @@ export class OrdersListComponent implements OnInit {
     if (confirm('Are you sure you want to delete this order?')) {
       this.apiService.deleteOrder(id).subscribe({
         next: () => {
-          this.loadOrders();
+          this.storeService.deleteOrder(id);
         },
         error: (error) => {
           this.error = 'Failed to delete order';

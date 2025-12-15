@@ -2,6 +2,11 @@
   <div class="nav-brand">
     <h2>Fleet Tracking Platform</h2>
   </div>
+  <div class="nav-controls">
+    <button class="sync-btn" (click)="syncData()" [disabled]="loading">
+      {{ loading ? 'Syncing...' : 'Sync Data' }}
+    </button>
+  </div>
   <div class="nav-links">
     <a routerLink="/admin">Admin Dashboard</a>
     <a routerLink="/driver">Driver Interface</a>
